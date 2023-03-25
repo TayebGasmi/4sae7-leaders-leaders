@@ -8,8 +8,8 @@ import lombok.*;
 @Getter
 @Setter
 public class AuthentificationRequest {
+    String password;
     private String email;
-     String password;
     private Boolean passwordneedschange;
 
 }

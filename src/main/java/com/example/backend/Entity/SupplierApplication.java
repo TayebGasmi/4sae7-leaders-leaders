@@ -19,12 +19,12 @@ public class SupplierApplication implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
     Long idApplication;
-     double priceGiven;
+    double priceGiven;
 
 
-     @ManyToOne
+    @ManyToOne
     User supplier;
 
-     @ManyToOne
+    @ManyToOne
     Offer offer;
 }

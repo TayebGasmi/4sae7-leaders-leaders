@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class RestrictionService extends IGenericServiceImp<Restriction,Long> implements  IRestrictionInterface {
+public class RestrictionService extends IGenericServiceImp<Restriction, Long> implements IRestrictionInterface {
 }

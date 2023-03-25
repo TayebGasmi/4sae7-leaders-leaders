@@ -10,14 +10,14 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class EquipementService extends IGenericServiceImp<Equipment,Long> implements IEquipementService{
+public class EquipementService extends IGenericServiceImp<Equipment, Long> implements IEquipementService {
 
 
     private final equipementRepository equiprepo;
 
     @Override
     public Equipment isFavorite(Long id) {
-        Equipment eq=equiprepo.findById(id).orElse(null);
+        Equipment eq = equiprepo.findById(id).orElse(null);
         eq.setFavorite(true);
         return equiprepo.save(eq);
     }

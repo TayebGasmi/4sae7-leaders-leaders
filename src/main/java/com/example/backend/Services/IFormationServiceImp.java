@@ -9,37 +9,38 @@ import com.example.backend.generic.IGenericServiceImp;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
-public class IFormationServiceImp extends IGenericServiceImp< Formation ,Long> implements IFormationService{
+public class IFormationServiceImp extends IGenericServiceImp<Formation, Long> implements IFormationService {
 
     private final FormationRepository formationRepository;
     private final UserRepository userRepository;
 
 
-       @Override
-       public Formation affectFormationToParticipant(Long idF, String firstName, String lastName) {
+    @Override
+    public Formation affectFormationToParticipant(Long idF, String firstName, String lastName) {
 
-            Formation f = this.retrieveById(idF);
-            User p = userRepository.findByFirstnameAndLastnameAndRolesContains(firstName,lastName, RoleEnum.ROLE_USER);
-            if(f != null && p!= null){
+        Formation f = this.retrieveById(idF);
+        User p = userRepository.findByFirstnameAndLastnameAndRolesContains(firstName, lastName, RoleEnum.ROLE_USER);
+        if (f != null && p != null) {
 
-                f.getParticipants().add(p);
+            f.getParticipants().add(p);
 
 
-            }
-
-            return formationRepository.save(f);
         }
 
+        return formationRepository.save(f);
+    }
 
 
     @Override
     public Formation affectFormationToFormer(Long idF, String nom, String prenom) {
 
         Formation f = this.retrieveById(idF);
-        User p = userRepository.findByFirstnameAndLastnameAndRolesContains(nom,prenom, RoleEnum.ROLE_FORMATEUR);
-        if(f != null && p!= null){
+        User p = userRepository.findByFirstnameAndLastnameAndRolesContains(nom, prenom, RoleEnum.ROLE_FORMATEUR);
+        if (f != null && p != null) {
 
             f.getFormers().add(p);
 
@@ -48,6 +49,8 @@ public class IFormationServiceImp extends IGenericServiceImp< Formation ,Long> i
 
         return formationRepository.save(f);
     }
+
+
 
 
 }

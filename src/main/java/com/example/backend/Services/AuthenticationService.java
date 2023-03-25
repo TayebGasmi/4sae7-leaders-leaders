@@ -1,6 +1,9 @@
 package com.example.backend.Services;
 
-import com.example.backend.Entity.*;
+import com.example.backend.Entity.RoleEnum;
+import com.example.backend.Entity.Token;
+import com.example.backend.Entity.TokenType;
+import com.example.backend.Entity.User;
 import com.example.backend.Playload.Request.AuthentificationRequest;
 import com.example.backend.Playload.Request.RegisterRequest;
 import com.example.backend.Playload.Response.AuthentificationResponse;
@@ -8,13 +11,11 @@ import com.example.backend.Repository.RoleRepository;
 import com.example.backend.Repository.TokenRepository;
 import com.example.backend.Repository.UserRepository;
 import com.example.backend.Security.JwtService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.var;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,13 +24,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -37,15 +32,13 @@ public class AuthenticationService {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
     private static final int MAX_FAILED_LOGIN_ATTEMPTS = 2;
-
-    @Autowired
-    RoleRepository roleRepository;
-
     private final UserRepository repository;
     private final TokenRepository tokenRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    @Autowired
+    RoleRepository roleRepository;
 
     public AuthentificationResponse register(RegisterRequest request) {
         logger.debug("RegisterRequest object: {}", request.toString());

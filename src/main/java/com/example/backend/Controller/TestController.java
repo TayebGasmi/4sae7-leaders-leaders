@@ -15,22 +15,25 @@ import java.util.Collection;
 public class TestController {
 
     @GetMapping("/")
-    public String home(){
+    public String home() {
         return ("<h1>weclome</h1>");
     }
+
     @GetMapping("/onlyadmin")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
 
-    public String admin(){
+    public String admin() {
         return ("<h1>weclome admin</h1>");
     }
+
     @GetMapping("/onlyuser")
     @PreAuthorize("hasAuthority('ROLE_USER')")
-    public String user(){
+    public String user() {
         return ("<h1>weclome user</h1>");
     }
+
     @GetMapping("/onlymoderateur")
-    public String moderateur(){
+    public String moderateur() {
         return ("<h1>weclome moderateur</h1>");
     }
 
@@ -39,6 +42,7 @@ public class TestController {
     public String adminEndpoint() {
         return "Hello, admin!";
     }
+
     @GetMapping("/protected")
     public String protectedEndpoint(Authentication authentication) {
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();

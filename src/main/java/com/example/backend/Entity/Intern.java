@@ -1,4 +1,5 @@
 package com.example.backend.Entity;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -20,7 +21,7 @@ public class Intern implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
-     Long cin;
+    Long cin;
     String firstName;
     String lastName;
     String email;

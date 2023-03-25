@@ -14,11 +14,12 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class serviceShift implements IshiftService{
+public class serviceShift implements IshiftService {
 
     private final shiftRepo shiftrepo;
     private final UserRepository userrepo;
     private final internRepo interpo;
+
     @Override
     public Shift create(Shift saved) {
         //startTIme must be before EndTime && breakTime must be between start time and end time
@@ -39,14 +40,14 @@ public class serviceShift implements IshiftService{
 
     @Override
     public List<Shift> deleteById(Long Id) {
-         shiftrepo.deleteById(Id);
-         return shiftrepo.findAll();
+        shiftrepo.deleteById(Id);
+        return shiftrepo.findAll();
     }
 
     @Override
     public void affecterShioftUser(Long ids, Long idu) {
-        User u=userrepo.findById(idu).orElse(null);
-        Shift s=shiftrepo.findById(ids).orElse(null);
+        User u = userrepo.findById(idu).orElse(null);
+        Shift s = shiftrepo.findById(ids).orElse(null);
         s.getUsers().add(u);
         shiftrepo.save(s);
     }
@@ -60,15 +61,16 @@ public class serviceShift implements IshiftService{
     public List<Intern> getInterns(Date datt) {
         return interpo.findByShift_StartTime(datt);
     }
+
     @Override
     public List<User> getIUsers(Date datt) {
         return userrepo.findByShifts_StartTime(datt);
     }
+
     @Override
-    public Shift affectInternToShfit(Long ids,Long idi)
-    {
-        Shift s=shiftrepo.findById(ids).orElse(null);
-        Intern i=interpo.findById(idi).orElse(null);
+    public Shift affectInternToShfit(Long ids, Long idi) {
+        Shift s = shiftrepo.findById(ids).orElse(null);
+        Intern i = interpo.findById(idi).orElse(null);
         s.getInterns().add(i);
         i.setShift(s);
         interpo.save(i);

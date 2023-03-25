@@ -32,12 +32,12 @@ public class Appointment implements Serializable {
 
     private String analysisCenter;
 
-    private boolean Is_Validated_By_Admin ;
+    private boolean Is_Validated_By_Admin;
 
     private String analysisType;
 
     private boolean isReportsReady;
-    private String Email ;
+    private String Email;
 
     @ToString.Exclude
     @ManyToOne(cascade = CascadeType.ALL)

@@ -5,9 +5,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Getter
@@ -20,22 +18,22 @@ public class Equipment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
-     Long idEquipment;
+    Long idEquipment;
 
-     String name;
+    String name;
 
-     String description;
+    String description;
 
-     Date dateManufacture;
+    Date dateManufacture;
 
-     Date dateEndUsefullLife;
+    Date dateEndUsefullLife;
 
-     int quantity;
+    int quantity;
 
     boolean favorite;
 
     @OneToOne(mappedBy = "equipment")
-     Offer offer;
+    Offer offer;
 
 
 }

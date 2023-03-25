@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/formation")
-public class FormationControler extends GenericController<Formation,Long> {
+public class FormationControler extends GenericController<Formation, Long> {
 
     private final IFormationService iService;
 
 
     @PostMapping("/{idF}/{nomP}/{prenomP}")
-    public Formation affectFormationToParticipant (@PathVariable Long idF, @PathVariable String nomP, @PathVariable String prenomP){
-        return iService.affectFormationToParticipant(idF,nomP,prenomP);
+    public Formation affectFormationToParticipant(@PathVariable Long idF, @PathVariable String nomP, @PathVariable String prenomP) {
+        return iService.affectFormationToParticipant(idF, nomP, prenomP);
     }
 
     @PostMapping("/{idF}/{nomF}/{prenomF}")
-    public Formation affectFormationToFormer (@PathVariable Long idF, @PathVariable String nomF, @PathVariable String prenomF){
-        return iService.affectFormationToFormer(idF,nomF,prenomF);
+    public Formation affectFormationToFormer(@PathVariable Long idF, @PathVariable String nomF, @PathVariable String prenomF) {
+        return iService.affectFormationToFormer(idF, nomF, prenomF);
     }
 }
 

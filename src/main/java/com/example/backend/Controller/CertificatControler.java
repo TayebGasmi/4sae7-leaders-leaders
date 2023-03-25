@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/certificat")
 
-public class CertificatControler extends GenericController<Certificat,Long> {
+public class CertificatControler extends GenericController<Certificat, Long> {
 
     private final ICertificatService iService;
 

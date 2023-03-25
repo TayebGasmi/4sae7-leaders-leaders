@@ -26,11 +26,11 @@ public class Certificat implements Serializable {
     Long id;
     String name;
     String description;
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     Date date;
 
-    @OneToMany( mappedBy = "certificat"   /*, cascade = CascadeType.ALL*/)
+    @OneToMany(mappedBy = "certificat"   /*, cascade = CascadeType.ALL*/)
     @JsonIgnore
-    Set<Formation> formations=new HashSet<>();
+    Set<Formation> formations = new HashSet<>();
 }

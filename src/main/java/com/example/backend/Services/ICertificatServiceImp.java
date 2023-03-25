@@ -9,12 +9,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-    //@Transactional
-    //@Slf4j
-public class ICertificatServiceImp extends IGenericServiceImp<Certificat,Long> implements ICertificatService{
+//@Transactional
+//@Slf4j
+public class ICertificatServiceImp extends IGenericServiceImp<Certificat, Long> implements ICertificatService {
 
-        private final CertificatRepository certificatRepository;
+    private final CertificatRepository certificatRepository;
 
 
-
-    }
+}

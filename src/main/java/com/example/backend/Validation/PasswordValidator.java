@@ -4,7 +4,6 @@ package com.example.backend.Validation;
 import org.springframework.stereotype.Component;
 
 
-
 @Component
 public class PasswordValidator {
 
@@ -20,7 +19,7 @@ public class PasswordValidator {
                 password.length() >= minLength &&
                 password.length() <= maxLength &&
                 (requireUpperCase && password.matches(".*[A-Z].*")) &&
-                (requireLowerCase && password.matches(".*[a-z].*")) ;
+                (requireLowerCase && password.matches(".*[a-z].*"));
 
     }
 
@@ -42,7 +41,7 @@ public class PasswordValidator {
 
     public void validate(String password) throws InvalidPasswordException {
         if (!isValid(password)) {
-            throw new InvalidPasswordException ("Invalid password");
+            throw new InvalidPasswordException("Invalid password");
         }
     }
 }

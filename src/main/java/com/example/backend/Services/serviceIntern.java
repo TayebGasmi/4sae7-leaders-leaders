@@ -1,13 +1,13 @@
 package com.example.backend.Services;
 
 import com.example.backend.Entity.Intern;
-import com.example.backend.Entity.Shift;
 import com.example.backend.Repository.internRepo;
 import com.example.backend.Repository.shiftRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class serviceIntern implements InternService {
@@ -26,7 +26,7 @@ public class serviceIntern implements InternService {
 
     @Override
     public Intern findById(Long id) {
-       // Long cin=id.getCin();
+        // Long cin=id.getCin();
         return internrepo.findById(id).orElse(null);
     }
 

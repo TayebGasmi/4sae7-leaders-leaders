@@ -4,7 +4,6 @@ import com.example.backend.Entity.Role;
 import com.example.backend.Entity.User;
 import com.example.backend.Playload.Request.AuthentificationRequest;
 import com.example.backend.Playload.Request.RegisterRequest;
-import com.example.backend.Playload.Response.AuthentificationResponse;
 import com.example.backend.Repository.RoleRepository;
 import com.example.backend.Repository.UserRepository;
 import com.example.backend.Services.AuthenticationService;
@@ -37,11 +36,11 @@ public class AuthController extends GenericController<User, Long> {
     private final AuthenticationService service;
     private final RoleRepository roleRepository;
     private final UserRepository userRepository;
-     @Autowired
+    private final PasswordEncoder passwordEncoder;
+    @Autowired
     AuthenticationManager authenticationManager;
     @Autowired
     JavaMailSender javaMailSender;
-      private final PasswordEncoder passwordEncoder;
     @Autowired
     private PasswordValidator passwordValidator;
 
@@ -66,7 +65,7 @@ public class AuthController extends GenericController<User, Long> {
             return ResponseEntity.ok(service.authenticate(request));
         } catch (UsernameNotFoundException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
-        }catch (javax.naming.AuthenticationException e){
+        } catch (javax.naming.AuthenticationException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Just change your password ");
         } catch (LockedException e) {
             return ResponseEntity.status(HttpStatus.LOCKED).body("Your account has been locked");
@@ -85,6 +84,7 @@ public class AuthController extends GenericController<User, Long> {
             return "Hello, user!";
         }
     }
+
     @PostMapping("/adduser")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         Role role = roleRepository.findById(3).orElseThrow(() -> new RuntimeException("Role not found"));
@@ -106,7 +106,7 @@ public class AuthController extends GenericController<User, Long> {
         // Look up the user by username
         User user = userRepository.findByEmail(email).orElse(null);
         // If the user doesn't exist or the old password is incorrect, return an error response
-        if (user == null ){
+        if (user == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
         // Set the new password and mark the user as having changed their password

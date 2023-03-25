@@ -25,7 +25,7 @@ public class AnalysisType implements Serializable {
 
     private String description;
 
-     private Date analysisDelay;
+    private Date analysisDelay;
 
     @ToString.Exclude
     @OneToOne(orphanRemoval = true)

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class ApplicationService extends IGenericServiceImp<SupplierApplication,Long> implements IApplicationService {
+public class ApplicationService extends IGenericServiceImp<SupplierApplication, Long> implements IApplicationService {
 
     private final applicationRepository apprepo;
     private final UserRepository userrepo;
@@ -21,16 +21,16 @@ public class ApplicationService extends IGenericServiceImp<SupplierApplication,L
 
     @Override
     public SupplierApplication affecterSupplierApplication(Long ids, Long ida) {
-        SupplierApplication app=apprepo.findById(ida).orElse(null);
-        User user=userrepo.findById(ids).orElse(null);
+        SupplierApplication app = apprepo.findById(ida).orElse(null);
+        User user = userrepo.findById(ids).orElse(null);
         app.setSupplier(user);
         return apprepo.save(app);
     }
 
     @Override
     public SupplierApplication affecterOfferApplication(Long ido, Long ida) {
-        SupplierApplication app=apprepo.findById(ida).orElse(null);
-        Offer off=offerepo.findById(ido).orElse(null);
+        SupplierApplication app = apprepo.findById(ida).orElse(null);
+        Offer off = offerepo.findById(ido).orElse(null);
         app.setOffer(off);
         return apprepo.save(app);
     }

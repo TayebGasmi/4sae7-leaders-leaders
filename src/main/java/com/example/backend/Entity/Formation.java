@@ -28,39 +28,33 @@ public class Formation implements Serializable {
     String name;
 
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     Date start_date;
 
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     Date end_date;
     @JsonIgnore
-    int period=0;
+    int period = 0;
+    float cost;
+    @ManyToMany( cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<User> participants = new HashSet<>();
+    @ManyToMany( cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<User> formers = new HashSet<>();
+    @OneToMany(mappedBy = "formation", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<Quiz> quizzes = new HashSet<>();
+    @ManyToOne
+    private Certificat certificat;
+
     public void setPeriod(int period) {
         int p;
         p = ((int) ((start_date.getTime() - end_date.getTime()) / (24 * 60 * 60 * 1000)));
         this.period = Math.abs(p);
     }
-
-    float cost;
-
-    @ManyToMany( mappedBy = "formations_particip", cascade = CascadeType.ALL)
-    @JsonIgnore
-    Set<User> participants=new HashSet<>();
-
-    @ManyToMany( mappedBy = "formations_former", cascade = CascadeType.ALL)
-    @JsonIgnore
-    Set<User> formers=new HashSet<>();
-
-
-
-    @OneToMany( mappedBy = "formation", cascade = CascadeType.ALL)
-    @JsonIgnore
-    Set<Quizz> quizzes=new HashSet<>();
-
-    @ManyToOne
-    Certificat  certificat;
 }
 
 

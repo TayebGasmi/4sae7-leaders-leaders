@@ -8,19 +8,21 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class serviceInternship implements InternshipService {
 
     private final internshipRequestRepo internshipRepo;
     private final internRepo internrepo;
+
     @Override
     public InternshipRequest create(InternshipRequest saved) {//startdate must be before end date and after now
         /*LocalDate now =  LocalDate.now();//now Type localdate
         Date datt=Date.from(now.atStartOfDay(ZoneId.systemDefault()).toInstant());//parsing now to date
         saved.setCreatedat(datt);
         if(saved.getDesiredStartDate().before(saved.getDesiredEndDate()) && saved.getDesiredStartDate().after(datt))*/
-        return  internshipRepo.save(saved);
+        return internshipRepo.save(saved);
     }
 
 
@@ -36,14 +38,14 @@ public class serviceInternship implements InternshipService {
 
     @Override
     public List<InternshipRequest> deleteById(Long Id) {
-         internshipRepo.deleteById(Id);
+        internshipRepo.deleteById(Id);
         return internshipRepo.findAll();
     }
 
     @Override
     public void affecterInternOnternship(Long IdInternship, Long IdIntern) {
-        Intern intern= internrepo.findById(IdIntern).orElse(null);
-        InternshipRequest internship=internshipRepo.findById(IdInternship).orElse(null);
+        Intern intern = internrepo.findById(IdIntern).orElse(null);
+        InternshipRequest internship = internshipRepo.findById(IdInternship).orElse(null);
         internship.setIntern(intern);
         internshipRepo.save(internship);
     }

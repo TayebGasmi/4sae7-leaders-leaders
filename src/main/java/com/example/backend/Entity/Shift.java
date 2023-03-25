@@ -1,5 +1,5 @@
 package com.example.backend.Entity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -33,7 +33,7 @@ public class Shift implements Serializable {
     @ManyToMany
     Set<User> users = new HashSet<>();
 
-    @OneToMany(cascade=CascadeType.ALL,mappedBy="shift")
-    Set<Intern> interns=new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "shift")
+    Set<Intern> interns = new HashSet<>();
 
 }
